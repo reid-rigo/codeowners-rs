@@ -19,7 +19,7 @@ use crate::patternset;
 /// ```
 #[derive(Clone)]
 pub struct RuleSet {
-    rules: Vec<Rule>,
+    pub rules: Vec<Rule>,
     matcher: patternset::Matcher,
 }
 
@@ -129,4 +129,15 @@ pub enum OwnerKind {
     User,
     Team,
     Email,
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_rules_public() {
+        let ruleset = RuleSet::new(vec![]);
+        assert_eq!(ruleset.rules, vec![]);
+    }
 }
