@@ -19,7 +19,7 @@ use crate::patternset;
 /// ```
 #[derive(Clone)]
 pub struct RuleSet {
-    pub rules: Vec<Rule>,
+    rules: Vec<Rule>,
     matcher: patternset::Matcher,
 }
 
@@ -66,6 +66,10 @@ impl RuleSet {
             .iter()
             .map(|&idx| (idx, &self.rules[idx]))
             .collect()
+    }
+
+    pub fn rules(&self) -> &[Rule] {
+        &self.rules
     }
 }
 
@@ -136,8 +140,8 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_rules_public() {
+    fn test_rules_getter() {
         let ruleset = RuleSet::new(vec![]);
-        assert_eq!(ruleset.rules, vec![]);
+        assert_eq!(ruleset.rules(), &[]);
     }
 }
